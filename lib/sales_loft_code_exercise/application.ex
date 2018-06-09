@@ -17,7 +17,9 @@ defmodule SalesLoftCodeExercise.Application do
       # supervisor(SalesLoftCodeExercise.Repo, []),
 
       # Start the endpoint when the application starts
-      supervisor(SalesLoftCodeExerciseWeb.Endpoint, [])
+      supervisor(SalesLoftCodeExercise.StoreSupervisor, []),
+      supervisor(SalesLoftCodeExerciseWeb.Endpoint, []),
+      supervisor(SalesLoftCodeExercise.PollerSupervisor, [])
       # Start your own worker by calling: SalesLoftCodeExercise.Worker.start_link(arg1, arg2, arg3)
       # worker(SalesLoftCodeExercise.Worker, [arg1, arg2, arg3]),
     ]

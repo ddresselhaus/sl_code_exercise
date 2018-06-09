@@ -2,6 +2,8 @@ defmodule SalesLoftCodeExercise.Poller do
   use GenServer
   alias SalesLoftCodeExercise.FetchPeople
   alias SalesLoftCodeExercise.StorePeople
+  alias SalesLoftCodeExercise.Store
+  alias SalesLoftCodeExerciseWeb.ApiChannel
   @fetch_config Application.get_env(:sales_loft_code_exercise, FetchPeople)
   @interval 10_000
   @timer_ref :poll_timer_ref
@@ -48,12 +50,14 @@ defmodule SalesLoftCodeExercise.Poller do
         state
 
       {:ok, :update} ->
-        process_update(state)
+        broadcast_update(state)
         state
     end
   end
 
-  def process_update(state) do
+  def broadcast_update(state) do
+    records = Store.get_all_person_records()
+    ApiChannel.broadcast_update_payload(records)
     state
   end
 end
