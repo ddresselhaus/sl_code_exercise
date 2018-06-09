@@ -18,3 +18,7 @@ config :sales_loft_code_exercise, SalesLoftCodeExercise.Repo,
   hostname: "localhost"
 
 #  pool: Ecto.Adapters.SQL.Sandbox
+
+config :sales_loft_code_exercise, SalesLoftCodeExercise.FetchPeople,
+  api_key: System.get_env("SALESLOFT_APPLICATION_SECRET"),
+  module: SalesLoftCodeExercise.FetchPeopleMock
