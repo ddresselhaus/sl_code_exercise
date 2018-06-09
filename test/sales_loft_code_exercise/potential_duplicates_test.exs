@@ -11,7 +11,7 @@ defmodule SalesLoftCodeExercise.PotentialDuplicatesTest do
       "kanira@heaney.biz"
     ]
 
-    scored_pairs = PotentialDuplicates.execute(emails)
+    scored_pairs = PotentialDuplicates.execute(emails, 0.7)
     closest_pair = Enum.at(scored_pairs, 0)
 
     assert closest_pair.first == "benoliv@salesloft.com"
