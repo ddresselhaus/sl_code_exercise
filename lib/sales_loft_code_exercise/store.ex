@@ -1,4 +1,5 @@
 defmodule SalesLoftCodeExercise.Store do
+  alias SalesLoftCodeExercise.Person
   use GenServer
   @ets_table :ets_store
 
@@ -6,20 +7,22 @@ defmodule SalesLoftCodeExercise.Store do
     GenServer.start_link(__MODULE__, opts, name: __MODULE__)
   end
 
-  def init(opts) do
+  def init(_opts) do
     ets = :ets.new(@ets_table, [:named_table, :public, read_concurrency: true])
     {:ok, %{ets: ets}}
   end
 
   def add_person_record({:person, id}, record) when is_integer(id) do
     id = {:person, id}
-    value = {id, :person, record}
+
+    record_struct = Person.map_sales_loft_to_struct(record)
+    value = {id, :person, record_struct}
 
     case :ets.insert_new(@ets_table, value) do
       false ->
         [{_id, _, existing_record}] = :ets.lookup(@ets_table, id)
 
-        case record == existing_record do
+        case record_struct == existing_record do
           true ->
             {:ok, :no_op}
 

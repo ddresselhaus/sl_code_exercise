@@ -3,7 +3,7 @@ defmodule SalesLoftCodeExercise.FetchPeopleMockTest do
   alias SalesLoftCodeExercise.FetchPeopleMock
 
   test "execute/1 works" do
-    json = FetchPeopleMock.execute()
+    {:ok, json} = FetchPeopleMock.execute()
     assert is_map(Poison.decode!(json))
   end
 end

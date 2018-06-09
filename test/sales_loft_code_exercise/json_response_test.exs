@@ -29,6 +29,6 @@ defmodule SalesLoftCodeExercise.JsonResponseTest do
       |> Enum.sort_by(fn x -> Enum.at(x, 1) end)
       |> Enum.reverse()
 
-    new_json = Poison.encode!(result)
+    _new_json = Poison.encode!(result)
   end
 end
