@@ -30,8 +30,5 @@ defmodule SalesLoftCodeExercise.JsonResponseTest do
       |> Enum.reverse()
 
     new_json = Poison.encode!(result)
-
-    require IEx
-    IEx.pry()
   end
 end
