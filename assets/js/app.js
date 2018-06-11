@@ -18,21 +18,24 @@
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-import socket from "./socket"
+import socket from "./socket";
 import ReactDOM from 'react-dom';
 import React from 'react';
-import Hello from "./components/hello"
+import Hello from "./components/hello";
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import {appReducer} from "./reducers/appReducer.js";
 
-class App extends React.Component {
+let store = createStore(
+  appReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+socket(store)
 
-  render () {
-    return(
-      <div className="container">
-        <h1>Hello World</h1>
-      </div>
 
-    )
-  }
-}
+const App = ({ store }) => (
+  <Provider store={store}>
 
-ReactDOM.render(<App />, document.getElementById("root"));
+  </Provider>
+)
+ReactDOM.render(<App store={store} />, document.getElementById("root"));

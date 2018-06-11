@@ -4,8 +4,10 @@
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/web/endpoint.ex":
 import {Socket} from "phoenix"
+import { updateAll } from "./actions/index.js"
 
-let socket = new Socket("/socket", {params: {}})
+let socket = (store) => {
+  let local_socket = new Socket("/socket", {params: {}})
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -51,16 +53,21 @@ let socket = new Socket("/socket", {params: {}})
 // Finally, pass the token on connect as below. Or remove it
 // from connect if you don't care about authentication.
 
-socket.connect()
+  local_socket.connect()
 
-// Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("api", {})
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
-channel.on("updated_payload", payload => {
-  console.log(payload)
-})
-
+  // Now that you are connected, you can join channels with a topic:
+  let channel = local_socket.channel("api", {})
+  channel.join()
+    .receive("ok", resp => {
+      console.log("Joined successfully");
+      let payload = JSON.parse(resp.payload);
+      store.dispatch(updateAll(payload))
+    })
+    .receive("error", resp => { console.log("Unable to join", resp) })
+  channel.on("updated_payload", payload => {
+      let parsed_payload = JSON.parse(payload.payload);
+      store.dispatch(updateAll(parsed_payload))
+  })
+}
 
 export default socket
