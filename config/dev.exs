@@ -67,7 +67,7 @@ config :phoenix, :stacktrace_depth, 20
 
 config :sales_loft_code_exercise, SalesLoftCodeExercise.FetchPeople,
   api_key: System.get_env("SALESLOFT_APPLICATION_SECRET"),
-  module: SalesLoftCodeExercise.FetchPeopleMock
+  module: SalesLoftCodeExercise.FetchPeople
 
 # Configure your database
 config :sales_loft_code_exercise, SalesLoftCodeExercise.Repo,

@@ -5,7 +5,7 @@ defmodule SalesLoftCodeExercise.Poller do
   alias SalesLoftCodeExercise.Store
   alias SalesLoftCodeExerciseWeb.ApiChannel
   @fetch_config Application.get_env(:sales_loft_code_exercise, FetchPeople)
-  @interval 10_000
+  @interval 5_000
   @timer_ref :poll_timer_ref
 
   def start_link(opts \\ nil) do
