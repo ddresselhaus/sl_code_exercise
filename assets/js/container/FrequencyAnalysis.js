@@ -1,26 +1,24 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
-const _Persons = ({ persons }) => {
+const _FrequencyAnalysis = ({ frequencyAnalysis }) => {
   return(
     <div>
       <table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email Address</th>
-            <th scope="col">Job Title</th>
+            <th scope="col">Letter</th>
+            <th scope="col">Count</th>
           </tr>
         </thead>
         <tbody>
-          {persons.map(function(person, i){
+          {frequencyAnalysis.map(function(row, i){
               return (
                 <tr>
                   <th scope="row">{i + 1}</th>
-                  <td>{person.first_name} {person.last_name}</td>
-                  <td>{person.email_address}</td>
-                  <td>{person.job_title}</td>
+                  <td>{row[0]}</td>
+                  <td>{row[1]}</td>
                 </tr>
               )
           })}
@@ -31,8 +29,8 @@ const _Persons = ({ persons }) => {
 }
 
 const mapStateToProps = (state) => ({
-  persons: state.persons
+  frequencyAnalysis: state.frequencyAnalysis
 });
-const Persons = connect(mapStateToProps, null)(_Persons)
+const FrequencyAnalysis = connect(mapStateToProps, null)(_FrequencyAnalysis)
 
-export { Persons }
+export { FrequencyAnalysis }

@@ -25,6 +25,9 @@ import Hello from "./components/hello";
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import {appReducer} from "./reducers/appReducer.js";
+import { Persons } from "./container/Persons";
+import { FrequencyAnalysis } from "./container/FrequencyAnalysis";
+import { PotentialDuplicates } from "./container/PotentialDuplicates";
 
 let store = createStore(
   appReducer,
@@ -35,7 +38,7 @@ socket(store)
 
 const App = ({ store }) => (
   <Provider store={store}>
-
+    <PotentialDuplicates />
   </Provider>
 )
 ReactDOM.render(<App store={store} />, document.getElementById("root"));
