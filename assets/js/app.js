@@ -28,6 +28,7 @@ import {appReducer} from "./reducers/appReducer.js";
 import { Persons } from "./container/Persons";
 import { FrequencyAnalysis } from "./container/FrequencyAnalysis";
 import { PotentialDuplicates } from "./container/PotentialDuplicates";
+import { BrowserRouter, Route } from "react-router-dom"
 
 let store = createStore(
   appReducer,
@@ -38,7 +39,13 @@ socket(store)
 
 const App = ({ store }) => (
   <Provider store={store}>
-    <PotentialDuplicates />
+    <BrowserRouter>
+      <div>
+        <Route exact path="/" component={Persons}/>
+        <Route path="/frequency" component={FrequencyAnalysis}/>
+        <Route path="/duplicates" component={PotentialDuplicates}/>
+      </div>
+    </BrowserRouter>
   </Provider>
 )
 ReactDOM.render(<App store={store} />, document.getElementById("root"));

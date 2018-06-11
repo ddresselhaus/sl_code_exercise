@@ -1,9 +1,11 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { Nav } from "../components/Nav"
 
 const _FrequencyAnalysis = ({ frequencyAnalysis }) => {
   return(
     <div>
+      <Nav />
       <table class="table">
         <thead>
           <tr>

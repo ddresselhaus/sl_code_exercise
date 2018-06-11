@@ -1,9 +1,11 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { Nav } from "../components/Nav"
 
 const _PotentialDuplicates = ({ potentialDuplicates }) => {
   return(
     <div>
+      <Nav />
       <table class="table">
         <thead>
           <tr>

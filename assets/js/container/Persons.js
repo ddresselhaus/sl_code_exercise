@@ -1,10 +1,12 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { Nav } from "../components/Nav"
 
 const _Persons = ({ persons }) => {
   return(
     <div>
-      <table class="table">
+      <Nav />
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -31,8 +33,14 @@ const _Persons = ({ persons }) => {
 }
 
 const mapStateToProps = (state) => ({
-  persons: state.persons
-});
+  persons: state.persons.sort(function(a, b){
+    if (a.email_address > b.email_address){
+      return 1
+    } else {
+      return -1
+    }
+  })
+})
 const Persons = connect(mapStateToProps, null)(_Persons)
 
 export { Persons }
