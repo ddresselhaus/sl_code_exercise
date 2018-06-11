@@ -36,7 +36,6 @@ let store = createStore(
 )
 socket(store)
 
-
 const App = ({ store }) => (
   <Provider store={store}>
     <BrowserRouter>

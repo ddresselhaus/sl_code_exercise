@@ -1,19 +1,19 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import {  Link } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 
 const Nav = ({ persons }) => {
   return(
     <div className="btn-group btn-group-toggle" data-toggle="buttons">
-      <Link to="/" >
-        <button className="btn btn-primary">Persons</button>
-      </Link>
-      <Link to="/frequency" >
-        <button className="btn btn-primary">Letter Frequency Analysis</button>
-      </Link>
-      <Link to="/duplicates" >
-        <button className="btn btn-primary">Possible Duplicate Emails</button>
-      </Link>
+      <NavLink exact to="/" activeClassName="active" className="btn btn-primary">
+        Persons
+      </NavLink>
+      <NavLink to="/frequency" activeClassName="active" className="btn btn-primary">
+        Letter Frequency Analysis
+      </NavLink>
+      <NavLink to="/duplicates" activeClassName="active" className="btn btn-primary">
+        Possible Duplicate Emails
+      </NavLink>
     </div>
   )
 }
