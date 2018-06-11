@@ -8,7 +8,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 
 const extractSASS = new ExtractTextPlugin({
-  filename: "css/[name].css",
+  filename: "css/app.css",
   allChunks: true
 });
 
@@ -87,16 +87,15 @@ module.exports = (env) => {
         },
 
         {
-          test: /\.(css|scss)$/,
+          test: /\.scss$/,
           exclude: /node_modules/,
           use: isDev ? [
             "style-loader",
             "css-loader",
-            "postcss-loader",
             "sass-loader"
           ] : extractSASS.extract({
             fallback: "style-loader",
-            use: ["css-loader", "postcss-loader", "sass-loader"]
+            use: ["css-loader", "sass-loader"]
           })
         }
       ]

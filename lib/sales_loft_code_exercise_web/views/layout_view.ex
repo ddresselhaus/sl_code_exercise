@@ -13,7 +13,7 @@ defmodule SalesLoftCodeExerciseWeb.LayoutView do
     if Mix.env() == :prod do
       ~s(<link rel="stylesheet" type="text/css" href="/css/app.css" media="screen,projection" />)
     else
-      ~s(<link rel="stylesheet" type="text/css" href="/css/app.css" media="screen,projection" />)
+      ~s(<link rel="stylesheet" type="text/css" href="http://localhost:8080/css/phoenix.css" media="screen,projection" />)
     end
   end
 end
